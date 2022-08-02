@@ -54,10 +54,10 @@ const StoryMenu = () => (
                     style={{
                         padding: 24,
                         margin: 0,
-                        minHeight: 280,
+                        minHeight: 585,
                     }}
                 >
-                    Content
+
                 </Content>
             </Layout>
         </Layout>
