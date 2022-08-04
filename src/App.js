@@ -1,6 +1,8 @@
 import './App.css';
+import 'antd/dist/antd.css';
+import './CssUtils/StoryMenu.css';
 import React,{Component} from 'react';
-import {Route, BrowserRouter, Routes, Link, NavLink} from "react-router-dom";
+import {Route,Routes,Link,} from "react-router-dom";
 import Ly1 from   './Components/Pages/Ly1'
 import Yh1 from   './Components/Pages/Yh1'
 import {Layout, Menu} from "antd";
@@ -69,9 +71,8 @@ export default class App extends Component{
         return (
             <Layout>
                 <Header className="header">
-                    {/*<div className="logo" />*/}
                     <Film className="logo" theme="outline" size="46" fill="#4a90e2" strokeWidth={3}/>
-                    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+                    <Menu theme="dark" mode="horizontal" items={items1} />
                 </Header>
                 <Layout>
                     <Sider width={200} className="site-layout-background">

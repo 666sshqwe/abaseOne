@@ -6,8 +6,7 @@ import {Layout, Menu} from 'antd';
 import Cards from './../Utils/Cards'
 import {Film} from '@icon-park/react'
 import imgPath from './../../resources/images/通远县-封面.png'
-import {Routes, Link, Route, NavLink} from 'react-router-dom';
-import Tool from "./ManyTool";
+import {NavLink} from 'react-router-dom';
 
 
 const { Header, Content, Sider } = Layout;
@@ -77,8 +76,7 @@ const StoryMenu = () => (
             </Sider>
             <Layout style={{padding: '0 24px 24px',}}>
              <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
-                 <Link to="/home"> <Cards title ="通远县" imagePath={imgPath} desc="5人-推理-半封闭"/></Link>
-                 {/*<Link to="/tool"> <Cards title ="通远县2" imagePath={imgPath} desc="25人-推理1-半封闭1"/></Link>*/}
+                <Cards title ="通远县" imagePath={imgPath} desc="5人-推理-半封闭"/>
              </Content>
             </Layout>
         </Layout>
