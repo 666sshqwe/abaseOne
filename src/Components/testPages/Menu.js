@@ -4,7 +4,7 @@ import Mainpage from './../Mainpage';
 
 export default function Menu() {
     return (
-        <Mainpage tag="menu主页"/>
+        <Mainpage tag="menu主页hahahah"/>
     )
 }
 
