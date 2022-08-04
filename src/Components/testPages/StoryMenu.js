@@ -6,6 +6,10 @@ import {Layout, Menu} from 'antd';
 import Cards from './../Utils/Cards'
 import {Film} from '@icon-park/react'
 import imgPath from './../../resources/images/通远县-封面.png'
+import {Routes, Link, Route, NavLink} from 'react-router-dom';
+import Tool from "./ManyTool";
+
+
 const { Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -13,7 +17,7 @@ function getItem(label, key, icon, children) {
         key,
         icon,
         children,
-        label,
+        label
     };
 }
 
@@ -25,7 +29,11 @@ const items1 = [
 
 const itemsM = [
     getItem('聚集地', 'tvKey', <MailOutlined />,[
-        getItem('灵异', 'ly1'),
+        getItem(
+            <NavLink to="/tool">
+            灵异
+            </NavLink>
+            , 'ly1'),
         getItem('硬核', 'yh1'),
         getItem('古风', 'gf1'),
     ]),
@@ -69,7 +77,8 @@ const StoryMenu = () => (
             </Sider>
             <Layout style={{padding: '0 24px 24px',}}>
              <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
-             <Cards title ="通远县" imagePath={imgPath} desc="5人-推理-半封闭"/>
+                 <Link to="/home"> <Cards title ="通远县" imagePath={imgPath} desc="5人-推理-半封闭"/></Link>
+                 {/*<Link to="/tool"> <Cards title ="通远县2" imagePath={imgPath} desc="25人-推理1-半封闭1"/></Link>*/}
              </Content>
             </Layout>
         </Layout>
