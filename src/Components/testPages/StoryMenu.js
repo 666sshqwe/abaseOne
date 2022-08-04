@@ -3,8 +3,9 @@ import 'antd/dist/antd.css';
 import './../../CssUtils/StoryMenu.css';
 import {MailOutlined,CalendarOutlined,AppstoreOutlined,SettingOutlined,LinkOutlined} from '@ant-design/icons';
 import {Layout, Menu} from 'antd';
+import Cards from './../Utils/Cards'
 import {Film} from '@icon-park/react'
-
+import imgPath from './../../resources/images/通远县-封面.png'
 const { Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -31,7 +32,7 @@ const itemsM = [
     getItem('收藏地', 'storeKey', <CalendarOutlined />,[
         getItem('待组队', 'dzd1'),
         getItem('已完成', 'ywc1'),
-        getItem('伙伴', 'hb1'),
+        getItem('小伙伴', 'hb1'),
     ]),
     getItem('Navigation Two', 'sub1', <AppstoreOutlined />, [
         getItem('Option 3', '3'),
@@ -62,13 +63,13 @@ const StoryMenu = () => (
         </Header>
         <Layout>
             <Sider width={200} className="site-layout-background">
-                <Menu mode="inline" defaultSelectedKeys={['storeKey']} defaultOpenKeys={['storeKey']} style={{
+                <Menu  mode="inline" defaultSelectedKeys={['storeKey']} defaultOpenKeys={['storeKey']} style={{
                         height: '100%',
                         borderRight: 0,}} items={itemsM}/>
             </Sider>
             <Layout style={{padding: '0 24px 24px',}}>
              <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
-
+             <Cards title ="通远县" imagePath={imgPath} desc="5人-推理-半封闭"/>
              </Content>
             </Layout>
         </Layout>
