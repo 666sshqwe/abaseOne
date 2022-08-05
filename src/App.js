@@ -8,6 +8,7 @@ import Yh1 from   './Components/Pages/Yh1'
 import {Layout, Menu} from "antd";
 import {Film} from "@icon-park/react";
 import {AppstoreOutlined, CalendarOutlined, LinkOutlined, MailOutlined, SettingOutlined} from "@ant-design/icons";
+import Storys from "./Components/Pages/Storys";
 
 
 const { Header, Content, Sider } = Layout;
@@ -84,9 +85,10 @@ export default class App extends Component{
                         <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
                             <div>
                               <Routes>
-                                <Route  path="/ly1" element={<Ly1/>}></Route>
+                                <Route  path="/ly1/*" element={<Ly1/>}></Route>
+                                  <Route  path="/ly1/Storys" element={<Storys/>}></Route>
                                 <Route  path="/yh1"  element={<Yh1/>}></Route>
-                            </Routes>
+                              </Routes>
                             </div>
                         </Content>
                     </Layout>

@@ -5,9 +5,8 @@ import {Card} from 'antd';
 const {Meta} = Card;
 
 const Cards = (props) => (
-        <Card hoverable style={{width: 240,}} cover={<img src={props.imagePath}/>}>
+        <Card hoverable style={{width: 225,float: 'left', margin: '0px 10px 0px 0px'}} cover={<img src={props.imagePath}/>}>
             <Meta title={props.title} description= {props.desc}/>
         </Card>
 );
-
 export default Cards;
