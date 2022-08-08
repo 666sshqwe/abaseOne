@@ -7,8 +7,9 @@ import Ly1 from   './Components/Pages/Ly1'
 import Yh1 from   './Components/Pages/Yh1'
 import {Layout, Menu} from "antd";
 import {Film} from "@icon-park/react";
-import {AppstoreOutlined, CalendarOutlined, LinkOutlined, MailOutlined, SettingOutlined} from "@ant-design/icons";
+import {AppstoreOutlined, HddOutlined, LinkOutlined, FireOutlined, SettingOutlined} from "@ant-design/icons";
 import Storys from "./Components/Pages/Storys";
+import Mainpage from './Components/Mainpage'
 
 
 const { Header, Content, Sider } = Layout;
@@ -29,7 +30,7 @@ const items1 = [
 ];
 
 const itemsM = [
-    getItem('聚集地', 'tvKey', <MailOutlined />,[
+    getItem('档案', 'tvKey', <HddOutlined/>,[
         getItem(
             <Link to="/ly1">
                 灵异
@@ -42,7 +43,7 @@ const itemsM = [
             , 'yh1'),
         getItem('古风', 'gf1'),
     ]),
-    getItem('收藏地', 'storeKey', <CalendarOutlined />,[
+    getItem('营地', 'storeKey', <FireOutlined />,[
         getItem('待组队', 'dzd1'),
         getItem('已完成', 'ywc1'),
         getItem('小伙伴', 'hb1'),
@@ -77,7 +78,7 @@ export default class App extends Component{
                 </Header>
                 <Layout>
                     <Sider width={200} className="site-layout-background">
-                        <Menu  mode="inline" defaultSelectedKeys={['storeKey']} defaultOpenKeys={['storeKey']} style={{
+                        <Menu  mode="inline" defaultSelectedKeys={['tvKey']} defaultOpenKeys={['tvKey']} style={{
                             height: '100%',
                             borderRight: 0,}} items={itemsM}/>
                     </Sider>
@@ -85,6 +86,7 @@ export default class App extends Component{
                         <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
                             <div>
                               <Routes>
+                                  <Route  path="/" element={<Mainpage/>}></Route>
                                 <Route  path="/ly1/*" element={<Ly1/>}></Route>
                                   <Route  path="/ly1/Storys" element={<Storys/>}></Route>
                                 <Route  path="/yh1"  element={<Yh1/>}></Route>
