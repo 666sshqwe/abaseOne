@@ -10,7 +10,7 @@ import {Link,} from "react-router-dom";
 export default function Ly1() {
     return (
         <div>
-        <Cards title ="通远县" imagePath={imgPathTy} desc="5人-推理-灵异"/>
+            <Link to='/ly1/Storys'><Cards title ="通远县" imagePath={imgPathTy} desc="5人-推理-灵异"/></Link>
         <Cards title ="瘆" imagePath={imgPathS} desc="7人-推理-灵异"/>
         </div>
     )

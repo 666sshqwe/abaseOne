@@ -1,4 +1,6 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
+import {Button, Affix} from 'antd';
+import { VideoCameraTwoTone } from '@ant-design/icons';
 import './../../index.css';
 import 'antd/dist/antd.css';
 import Cards from "../Utils/Cards";
@@ -7,7 +9,6 @@ import imgPathYZ from "../../resources/images/硬核/已知死亡/封面-已知�
 import imgPathQZ from "../../resources/images/硬核/漆昼之翁/封面 -漆昼之翁.jpg";
 import '../../CssUtils/Yh1.css'
 import {Drawer} from "antd";
-import Storys from "./Storys"
 import imgPathBG from "../../resources/images/硬核/已知死亡/故事背景.jpg";
 import imgCDC from "../../resources/images/硬核/已知死亡/陈大川/陈大川_1.jpg";
 import imgCDCx from "../../resources/images/硬核/已知死亡/陈小川/陈小川_C (1).jpg";
@@ -23,7 +24,8 @@ import imgKL from "../../resources/images/硬核/漆昼之翁/孔力/孔力 (1).
 import imgSZ from "../../resources/images/硬核/漆昼之翁/孙政/孙政 (1).jpg";
 import imgLSS from "../../resources/images/硬核/漆昼之翁/李思思/李思思 (1).jpg";
 import imgHB from "../../resources/images/硬核/漆昼之翁/胡彪/胡彪 (1).jpg";
-
+import {Link,} from "react-router-dom";
+import SegmentUtil from "../testPages/SegmentUtil";
 
 export default class Yh1 extends Component {
     constructor(props){
@@ -43,8 +45,6 @@ export default class Yh1 extends Component {
         }
     }
 
-
-
     storysYzsw=[
         {title:"已知死亡",imagePath:imgPathBG,name:"故事简介"},
         {title:"已知死亡",imagePath:imgCDC,name:"陈大川"},
@@ -54,8 +54,7 @@ export default class Yh1 extends Component {
         {title:"已知死亡",imagePath:imgLYY,name:"林妍妍"},
         {title:"已知死亡",imagePath:imgFYY,name:"方雅云"}
         ];
-
-     storysQzzw = [
+    storysQzzw = [
         {title:"漆昼之翁",imagePath:imgQZRW,name:"故事简介"},
         {title:"漆昼之翁",imagePath:imgFS,name:"冯时"},
         {title:"漆昼之翁",imagePath:imgLL,name:"刘恋"},
@@ -65,7 +64,7 @@ export default class Yh1 extends Component {
         {title:"漆昼之翁",imagePath:imgLSS,name:"李思思"},
         {title:"漆昼之翁",imagePath:imgHB,name:"胡彪"}
     ];
-     storysLsdlh = [
+    storysLsdlh = [
         {title:"蓝色大丽花",imagePath:imgPathBG,name:"故事简介"},
         {title:"蓝色大丽花",imagePath:imgCDC,name:"陈大川"},
         {title:"蓝色大丽花",imagePath:imgCDCx,name:"陈小川"},
@@ -76,7 +75,6 @@ export default class Yh1 extends Component {
     ];
 
      showDrawer = function (title) {
-         console.log("选中的是"+title);
         if(title === "漆昼之翁"){
             var data =this.storysQzzw;
             this.setState({
@@ -112,7 +110,7 @@ export default class Yh1 extends Component {
 
     render(){
         return(
-            <div className="site-drawer-render-in-current-wrapper">
+            <div style={{height: '100%'}} className="site-drawer-render-in-current-wrapper">
                 <div onClick={this.showDrawer.bind(this, "已知死亡")} >
                     <Cards title="已知死亡" imagePath={imgPathYZ} desc="6人-推理"/>
                 </div>
@@ -129,11 +127,20 @@ export default class Yh1 extends Component {
                     title={this.state.drawerData}
                     placement="right"
                     closable={false}
+                    width = '566px'
                     onClose={this.onClose}
                     visible={this.state.visible}
                     getContainer={false}
                     style={{position: 'absolute'}}
                 >
+                 <div style={{margin: '0px 0 18px 0px'}} >
+
+                         <Link to='/yh1/PlayGames'>
+                             <Button ghost type="primary" shape="round" icon={<VideoCameraTwoTone/>} size='large'>
+                                 点击进入
+                             </Button>
+                         </Link>
+                 </div>
                     {
                         this.state.storys.map((item)=>{
                             return(

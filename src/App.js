@@ -5,13 +5,12 @@ import React,{Component} from 'react';
 import {Route,Routes,Link,} from "react-router-dom";
 import Ly1 from   './Components/Pages/Ly1'
 import Yh1 from   './Components/Pages/Yh1'
-import {Layout, Menu} from "antd";
+import {Drawer, Layout, Menu} from "antd";
 import {Film} from "@icon-park/react";
 import {AppstoreOutlined, HddOutlined, LinkOutlined, FireOutlined, SettingOutlined} from "@ant-design/icons";
 import Storys from "./Components/Pages/Storys";
 import Mainpage from './Components/Mainpage'
-
-
+import PlayGames from './Components/PlayGames'
 const { Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -55,9 +54,6 @@ const itemsM = [
     ]),
     getItem('Navigation Three', 'sub2', <SettingOutlined />, [
         getItem('Option 7', '7'),
-        getItem('Option 8', '8'),
-        getItem('Option 9', '9'),
-        getItem('Option 10', '10'),
     ]),
     getItem(
         <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
@@ -69,27 +65,33 @@ const itemsM = [
 ];
 
 export default class App extends Component{
+    constructor(props){
+        super(props);
+    }
+
     render(){
         return (
-            <Layout>
+            <Layout style={{height: '100%'}}>
                 <Header className="header">
                     <Film className="logo" theme="outline" size="46" fill="#4a90e2" strokeWidth={3}/>
                     <Menu theme="dark" mode="horizontal" items={items1} />
                 </Header>
-                <Layout>
-                    <Sider width={200} className="site-layout-background">
+                <Layout className="site-drawer-render-in-current-wrapper">
+                    <Sider  width={200} className="site-layout-background">
                         <Menu  mode="inline" defaultSelectedKeys={['tvKey']} defaultOpenKeys={['tvKey']} style={{
                             height: '100%',
                             borderRight: 0,}} items={itemsM}/>
                     </Sider>
+
                     <Layout style={{padding: '0 24px 24px',}}>
                         <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
-                            <div>
+                            <div style={{height: '100%'}}>
                               <Routes>
                                   <Route  path="/" element={<Mainpage/>}></Route>
                                 <Route  path="/ly1/*" element={<Ly1/>}></Route>
                                   <Route  path="/ly1/Storys" element={<Storys/>}></Route>
                                 <Route  path="/yh1"  element={<Yh1/>}></Route>
+                                  <Route  path="/yh1/PlayGames"  element={<PlayGames/>}></Route>
                               </Routes>
                             </div>
                         </Content>

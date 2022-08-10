@@ -1,20 +1,29 @@
 import logo from './../logo.svg';
 import './../App.css';
-import React from "react";
+import React, {Component} from "react";
 import Clock from './../Components/TimeUtils'
 
-function Mainpage(props) {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>
-                    欢迎来到玩家俱乐部
-                </h2>
-                <Clock/>
-            </header>
-        </div>
-    );
-}
 
-export default Mainpage;
+export default class Mainpage extends Component{
+    state = {
+        parentText:"卡比兽最强",
+        childMessage:false
+    }
+
+    getChildMesg=(data)=>{
+     console.log("子组件传递过来的值",data)
+        this.setState({
+            childMessage:data
+        })
+
+    }
+
+
+    render() {
+        return (
+            <div className="App">
+                <h1>欢迎欢迎~~~~</h1>
+            </div>
+        );
+    }
+}
