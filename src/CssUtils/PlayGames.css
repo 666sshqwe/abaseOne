@@ -1,4 +1,5 @@
 .Idcard{
-    display: flex;
-    margin: 265px 0px 0px 1147px;
+    position: fixed;
+    right: 42px;
+    bottom: 30px;
 }

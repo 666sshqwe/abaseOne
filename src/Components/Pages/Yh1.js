@@ -25,7 +25,7 @@ import imgSZ from "../../resources/images/硬核/漆昼之翁/孙政/孙政 (1).
 import imgLSS from "../../resources/images/硬核/漆昼之翁/李思思/李思思 (1).jpg";
 import imgHB from "../../resources/images/硬核/漆昼之翁/胡彪/胡彪 (1).jpg";
 import {Link,} from "react-router-dom";
-import SegmentUtil from "../testPages/SegmentUtil";
+import SegmentUtil from "../Utils/SegmentUtil";
 
 export default class Yh1 extends Component {
     constructor(props){
@@ -134,7 +134,6 @@ export default class Yh1 extends Component {
                     style={{position: 'absolute'}}
                 >
                  <div style={{margin: '0px 0 18px 0px'}} >
-
                          <Link to='/yh1/PlayGames'>
                              <Button ghost type="primary" shape="round" icon={<VideoCameraTwoTone/>} size='large'>
                                  点击进入

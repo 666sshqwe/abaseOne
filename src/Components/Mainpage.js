@@ -5,19 +5,6 @@ import Clock from './../Components/TimeUtils'
 
 
 export default class Mainpage extends Component{
-    state = {
-        parentText:"卡比兽最强",
-        childMessage:false
-    }
-
-    getChildMesg=(data)=>{
-     console.log("子组件传递过来的值",data)
-        this.setState({
-            childMessage:data
-        })
-
-    }
-
 
     render() {
         return (

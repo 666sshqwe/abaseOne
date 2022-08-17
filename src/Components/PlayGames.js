@@ -1,8 +1,8 @@
 import {Component} from "react";
-import StepsUtil from "./testPages/StepsUtil"
+import StepsUtil from "./Utils/StepsUtil"
 import {Drawer, Popover,Affix} from "antd";
 import React from "react";
-import SegmentUtil from "./testPages/SegmentUtil";
+import SegmentUtil from "./Utils/SegmentUtil";
 import { IdcardOutlined } from '@ant-design/icons';
 import "../CssUtils/PlayGames.css"
 
@@ -11,9 +11,10 @@ export default class PlayGames extends Component {
     constructor(props){
         super(props);
         this.state = {
-            visible:true,
+            visible:false,
             isSelect:false,
-            role:""
+            role:"",
+            roleID:[]
         }
     }
 
@@ -23,26 +24,21 @@ export default class PlayGames extends Component {
         </div>
     );
 
+
     onCloseP = () => {
-        if(this.state.isSelect){
             this.setState({
                 visible:false,
             });
-        }else{
-            alert("请先选择角色");
-        }
-
-
     };
 
     showDrawerP = ()=> {
         this.setState({
             visible:true,
         });
+
     };
 
     getSegmentValue =(data)=>{
-        console.log("PlayGames获得Segment的值",data)
         this.setState({
             role:data,
             isSelect:true
@@ -57,7 +53,7 @@ export default class PlayGames extends Component {
                <IdcardOutlined  style={{ fontSize: '751%'}} onClick={this.showDrawerP}/>
               </Popover>
               <Drawer
-                  title={"角色分配界面"}
+                  title={"角色信息"}
                   placement="left"
                   closable={false}
                   width = '265px'
@@ -66,7 +62,8 @@ export default class PlayGames extends Component {
                   getContainer={false}
                   style={{position: 'absolute'}}
               >
-              <SegmentUtil getVaule={this.getSegmentValue}/>
+                  <h1>你的身份</h1>
+                  <h2>你的任务</h2>
               </Drawer>
           </div>
       )

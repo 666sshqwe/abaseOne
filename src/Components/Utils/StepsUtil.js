@@ -1,8 +1,13 @@
 import React, {Component, useState} from 'react';
 import 'antd/dist/antd.css';
-import './testCss/StepsUtil.css';
-import { Popover,Steps } from 'antd';
-import {IdcardOutlined} from "@ant-design/icons";
+import '../testPages/testCss/StepsUtil.css';
+import { Image,Steps,Button } from 'antd';
+import {IdcardOutlined, VideoCameraTwoTone} from "@ant-design/icons";
+import ImgUtils from './ComSource'
+import Cards from "./Cards";
+import {Link} from "react-router-dom";
+import StepContent from "./StepContent";
+import QueueAnim from "rc-queue-anim/es";
 
 const { Step } = Steps;
 const steps = [
@@ -25,12 +30,11 @@ const steps = [
 ];
 
 export default class StepsUtil extends Component {
-
-
     constructor(props){
         super(props);
         this.state = {
             current:0,
+            detailPeople:[ImgUtils.imgCDC,ImgUtils.imgCDCx]
         }
     }
 
@@ -54,8 +58,35 @@ export default class StepsUtil extends Component {
                         <Step key={item.title} title={item.title} />
                     ))}
                 </Steps>
+                {/**内容展示区,不同的步骤，展示不同的内容**/}
                 <div className="steps-content">
+                    {
+                        this.state.current ===0&&(<StepContent/>)
+                    }
+                </div>
 
+                {/**按钮**/}
+                <div className="steps-action">
+                    {this.state.current < steps.length - 1 && (
+                        <Button type="primary" onClick={() => this.next()}>
+                            Next
+                        </Button>
+                    )}
+                    {this.state.current === steps.length - 1 && (
+                        <Button type="primary" >
+                            Done
+                        </Button>
+                    )}
+                    {this.state.current > 0 && (
+                        <Button
+                            style={{
+                                margin: '0 8px',
+                            }}
+                            onClick={() => this.prev()}
+                        >
+                            Previous
+                        </Button>
+                    )}
                 </div>
 
             </>
