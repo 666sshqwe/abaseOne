@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import './../../CssUtils/StoryMenu.css';
 import {MailOutlined,CalendarOutlined,AppstoreOutlined,SettingOutlined,LinkOutlined} from '@ant-design/icons';
 import {Layout, Menu} from 'antd';
@@ -9,7 +9,7 @@ import imgPath from '../../resources/images/灵异/通远县/通远县-封面.pn
 import {NavLink} from 'react-router-dom';
 
 
-const { Header, Content, Sider } = Layout;
+const {Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
     return {
@@ -20,14 +20,14 @@ function getItem(label, key, icon, children) {
     };
 }
 
-const items1 = [
+const TitleItems = [
     getItem('新手推荐','newerKey'),
     getItem('小助手','tipKey'),
     getItem('待定','stay')
 ];
 
 const itemsM = [
-    getItem('聚集地', 'tvKey', <MailOutlined />,[
+    getItem('聚集地', 'tvPlace', <MailOutlined />,[
         getItem(
             <NavLink to="/tool">
             灵异
@@ -36,12 +36,12 @@ const itemsM = [
         getItem('硬核', 'yh1'),
         getItem('古风', 'gf1'),
     ]),
-    getItem('收藏地', 'storeKey', <CalendarOutlined />,[
+    getItem('收藏地', 'collectionPlace', <CalendarOutlined />,[
         getItem('待组队', 'dzd1'),
         getItem('已完成', 'ywc1'),
         getItem('小伙伴', 'hb1'),
     ]),
-    getItem('Navigation Two', 'sub1', <AppstoreOutlined />, [
+    getItem('剧本广场', 'squarePlace', <AppstoreOutlined />, [
         getItem('Option 3', '3'),
         getItem('Option 4', '4'),
         getItem('Submenu', 'sub1-2', null, [getItem('Option 5', '5'), getItem('Option 6', '6')]),
@@ -61,12 +61,12 @@ const itemsM = [
     ),
 ];
 
-const StoryMenu = () => (
+const StorySquare = () => (
     <Layout>
         <Header className="header">
             {/*<div className="logo" />*/}
             <Film className="logo" theme="outline" size="46" fill="#4a90e2" strokeWidth={3}/>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={TitleItems} />
         </Header>
         <Layout>
             <Sider width={200} className="site-layout-background">
@@ -83,4 +83,4 @@ const StoryMenu = () => (
     </Layout>
 );
 
-export default StoryMenu;
+export default StorySquare;

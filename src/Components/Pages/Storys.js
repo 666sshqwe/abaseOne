@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './../../index.css';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import imgCDC from "../../resources/images/硬核/已知死亡/陈大川/陈大川_1.jpg";
 import imgPathBG from "../../resources/images/硬核/已知死亡/故事背景.jpg";
 import Cards from "../Utils/Cards";

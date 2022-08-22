@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import {Drawer} from 'antd';
 import Cards from "./Cards";
 import imgPathBG from "../../resources/images/硬核/已知死亡/故事背景.jpg";

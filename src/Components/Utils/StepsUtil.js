@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import '../testPages/testCss/StepsUtil.css';
 import { Image,Steps,Button } from 'antd';
 import {IdcardOutlined, VideoCameraTwoTone} from "@ant-design/icons";

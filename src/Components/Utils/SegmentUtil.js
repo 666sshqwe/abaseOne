@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import '../testPages/testCss/SegmentUtil.css';
 import { Avatar, Segmented } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
