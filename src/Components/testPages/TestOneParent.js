@@ -1,7 +1,7 @@
 
 import './../App.css';
 import React, {Component} from "react";
-import PlayGame from './TestOneChild'
+import TestOneChild from './TestOneChild'
 
 export default class TestOneParent extends Component{
     state = {
@@ -21,7 +21,7 @@ export default class TestOneParent extends Component{
     render() {
         return (
             <div className="App">
-                <PlayGame text = {this.state.parentText} getMesage = {this.getChildMesg}/>
+                <TestOneChild text = {this.state.parentText} getMesage = {this.getChildMesg}/>
                 <h2>子不服，说：{this.state.childMessage?"皮卡丘yyds":"卡比兽最强"}</h2>
             </div>
         );

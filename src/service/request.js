@@ -1,7 +1,7 @@
 import axios from "axios";
 
 axios.defaults.timeout = 10000;
-axios.defaults.baseURL = "http://192.168.43.66:8015/stores";
+axios.defaults.baseURL = "http://172.22.159.164:8015/stores";
 
 
 /**

@@ -8,6 +8,7 @@ import {Link,} from "react-router-dom";
 
 
 export default function Supernatural() {
+
     return (
         <div>
             <Link to='/Supernatural/Storys'><Cards title ="通远县" imagePath={imgPathTy} desc="5人-推理-灵异"/></Link>

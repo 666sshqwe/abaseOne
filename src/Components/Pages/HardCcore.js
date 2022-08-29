@@ -26,11 +26,15 @@ import imgKL from "../../resources/images/硬核/漆昼之翁/孔力/孔力 (1).
 import imgSZ from "../../resources/images/硬核/漆昼之翁/孙政/孙政 (1).jpg";
 import imgLSS from "../../resources/images/硬核/漆昼之翁/李思思/李思思 (1).jpg";
 import imgHB from "../../resources/images/硬核/漆昼之翁/胡彪/胡彪 (1).jpg";
-import {Link,} from "react-router-dom";
+import {Link,useParams,useNavigate} from "react-router-dom";
 
-export default class HardCcore extends Component {
+
+
+class HardCcore extends Component {
+
     constructor(props){
         super(props);
+        console.info("HardCcore获得从Main中传来的数据"+props.location);
         this.state = {
             storys: [
                 {title:"已知死亡",imagePath:imgPathBG,name:"故事背景"},
@@ -42,21 +46,23 @@ export default class HardCcore extends Component {
                 {title:"已知死亡",imagePath:imgFYY,name:"方雅云"}
             ],
             visible:false,
-            drawerData:""
+            drawerData:"",
+            statu:""
         }
     }
 
     componentDidMount(){
+
         //通用写法
-        axios.get("/store/get",{
-            params:{
-                roleID:"1102"
-            }
-        })
-            .then(res =>res.data)
-            .then(data=>{
-                console.log("接受到的消息是："+data);
-            })
+        // axios.get("/store/get",{
+        //     params:{
+        //         roleID:"1102"
+        //     }
+        // })
+        //     .then(res =>res.data)
+        //     .then(data=>{
+        //         console.log("接受到的消息是："+data);
+        //     })
     }
 
      storysYzsw=[
@@ -181,4 +187,5 @@ export default class HardCcore extends Component {
 
 }
 
+export default HardCcore;
 

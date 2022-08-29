@@ -5,12 +5,16 @@ import React,{Component} from 'react';
 import {Route,Routes,Link,} from "react-router-dom";
 import Supernatural from './Components/Pages/Supernatural'
 import HardCcore from   './Components/Pages/HardCcore'
-import {Layout, Menu} from "antd";
+import {Breadcrumb, Layout, Menu} from "antd";
 import {Film} from "@icon-park/react";
 import {AppstoreOutlined, HddOutlined, LinkOutlined, FireOutlined, SettingOutlined} from "@ant-design/icons";
 import Storys from "./Components/Pages/Storys";
 import Mainpage from './Components/Mainpage'
 import PlayGames from './Components/PlayGames'
+import {UserOutlined } from '@ant-design/icons';
+import axios from "axios";
+
+
 const { Header, Content, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -51,9 +55,18 @@ const itemsM = [
     ),
 ];
 
+
+
 export default class App extends Component{
     constructor(props){
         super(props);
+        this.state = {
+        }
+    }
+
+    componentDidMount(){
+      var param  =  window.location.href.split("?")[1];
+      
     }
 
     render(){
@@ -73,18 +86,19 @@ export default class App extends Component{
                         <Content className="site-layout-background" style={{padding: 24, margin: 0, minHeight: 585,}}>
                             <div style={{height: '100%'}}>
                               <Routes>
-                                  <Route  path="/" element={<Mainpage/>}></Route>
-                                <Route  path="/Supernatural/*" element={<Supernatural/>}></Route>
-                                  <Route  path="/Supernatural/Storys" element={<Storys/>}></Route>
-                                <Route  path="/HardCcore"  element={<HardCcore/>}></Route>
-                                  <Route  path="/HardCcore/PlayGames"  element={<PlayGames/>}></Route>
+                                      <Route  path="/" element={<Mainpage/>}></Route>
+                                      <Route  path="/Supernatural/*" element={<Supernatural/>}></Route>
+                                      <Route  path="/Supernatural/Storys" element={<Storys/>}></Route>
+                                      <Route  path="/HardCcore"  element={<HardCcore/>}></Route>
+                                      <Route  path="/HardCcore/PlayGames"  element={<PlayGames/>}></Route>
                               </Routes>
                             </div>
                         </Content>
                     </Layout>
-                </Layout>
-            </Layout>
 
+                </Layout>
+
+            </Layout>
         );
     }
 }
