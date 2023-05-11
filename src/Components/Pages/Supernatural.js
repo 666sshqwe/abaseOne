@@ -11,7 +11,7 @@ export default function Supernatural() {
 
     return (
         <div>
-            <Link to='/Supernatural/Storys'><Cards title ="通远县" imagePath={imgPathTy} desc="5人-推理-灵异"/></Link>
+        <Link to='/Supernatural/Storys'><Cards title ="通远县" imagePath={imgPathTy} desc="5人-推理-灵异"/></Link>
         <Cards title ="瘆" imagePath={imgPathS} desc="7人-推理-灵异"/>
         </div>
     )

@@ -1,13 +1,9 @@
 import React, {Component, useState} from 'react';
 import 'antd/dist/antd.min.css';
 import '../testPages/testCss/StepsUtil.css';
-import { Image,Steps,Button } from 'antd';
-import {IdcardOutlined, VideoCameraTwoTone} from "@ant-design/icons";
-import ImgUtils from './ComSource'
-import Cards from "./Cards";
-import {Link} from "react-router-dom";
+import {Steps,Button } from 'antd';
 import StepContent from "./StepContent";
-import QueueAnim from "rc-queue-anim/es";
+
 
 const { Step } = Steps;
 const steps = [
@@ -33,8 +29,7 @@ export default class StepsUtil extends Component {
     constructor(props){
         super(props);
         this.state = {
-            current:0,
-            detailPeople:[ImgUtils.imgCDC,ImgUtils.imgCDCx]
+            current:0
         }
     }
 
@@ -52,14 +47,16 @@ export default class StepsUtil extends Component {
 
     render(){
         return (
-            <>
+            <div style={{overflow :"auto"}}>
                 <Steps current={this.state.current}>
-                    {steps.map((item) => (
-                        <Step key={item.title} title={item.title} />
-                    ))}
+                    {
+                     steps.map((item) => (
+                       <Step key={item.title} title={item.title} />
+                    ))
+                    }
                 </Steps>
                 {/**内容展示区,不同的步骤，展示不同的内容**/}
-                <div className="steps-content">
+                <div  className="steps-content">
                     {
                         this.state.current ===0&&(<StepContent/>)
                     }
@@ -89,7 +86,7 @@ export default class StepsUtil extends Component {
                     )}
                 </div>
 
-            </>
+            </div>
         );
     }
 

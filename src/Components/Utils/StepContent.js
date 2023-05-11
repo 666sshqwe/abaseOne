@@ -1,15 +1,10 @@
 import {Component} from "react";
-import {Drawer, Image} from 'antd';
+import {Spin, Image} from 'antd';
 import {Button} from "antd";
 import React from "react";
 import Texty from 'rc-texty';
 import QueueAnim from 'rc-queue-anim';
-import Request from '../../service/request';
-import ImgUtils from './ComSource'
 import axios from "axios";
-import imgSY from "../../resources/images/硬核/已知死亡/宋羽/宋羽_ (1).jpg";
-import imgLYY from "../../resources/images/硬核/已知死亡/林妍妍/林妍妍_ (1).jpg";
-import imgFYY from "../../resources/images/硬核/已知死亡/方雅云/方雅云_ (1).jpg";
 
 export default class StepContent extends Component{
     constructor(props){
@@ -17,45 +12,40 @@ export default class StepContent extends Component{
         this.state = {
             roleID:0,
             current:0,
-            roleImge:[
-                <div style={{float: 'left'}} key='VimgSY'>
-                <Image key='VimgSY'
-                    width={200}
-                    src={imgSY}
-            /></div>,
-                <div style={{float: 'left'}} key='VimgLYY'>
-                    <Image key='VimgLYY'
-                    width={200}
-                    src={imgLYY}
-            /></div>,
-
-                <div style={{float: 'left'}} key='VimgFYY'>
-                    <Image key='VimgFYY'
-                    width={200}
-                    src={imgFYY}
-            /></div>]
+            roleInfo:[],
+            sessionId:"",
+            storySession:{}
         }
     }
 
     componentDidMount(){
-        // //通用写法
-        // axios.get("/store/roleInfo",{
-        //     params:{
-        //         roleID:"1102"
-        //     }
-        // })
-        //     .then(res =>res.data)
-        //     .then(data=>{
-        //         console.log("接受到的消息是："+data);
-        //     })
+        var param  = window.location.href.split("?")[1].split("=")[1];
+        this.setState({
+            sessionId:param
+        });
 
-
+        // 还需要判断，当前用户是否在该场次中了，如果已经在了，直接跳过第一步，在准备界面中
+        // 获取场次信息,获得所有角色图片
+        axios.get("/store/getSessions",{
+            params:{
+                sessionId:param
+            }
+        })
+            .then(res =>res.data)
+            .then(data=>{
+                  this.setState({
+                      roleInfo:[...data.roleInfo],
+                      storySession:data.storySession
+                })
+            });
 
     }
 
     /** 选择角色 */
     chooseRadm = () => {
-                             /** max-min+1 **/
+        var userId = this.state.sessionId;
+        console.info("userId is "+userId);
+        /** max-min+1 **/
         var num = Math.floor(Math.random()*3)+1;
         var sNum = 0;
         var eNum = 0;
@@ -63,12 +53,12 @@ export default class StepContent extends Component{
             eNum = 1;
         }else{
             sNum = num-1;
-            eNum = num-1;
+            eNum = num;
         }
-        let content = this.state.roleImge.concat();
+        let content = this.state.roleInfo.concat();
         let data1 = content.splice(sNum,eNum);
         this.setState({
-            roleImge:[...data1]
+            roleInfo:[...data1]
         })
     };
 
@@ -77,20 +67,26 @@ export default class StepContent extends Component{
 
     render(){
         return(
-            <div style={{ fontSize: 27,color: 'dodgerblue'}}>
+            <div style={{ fontSize: 27,color: 'dodgerblue',overflow :"auto"}}>
                 <Texty type={'mask-bottom'} mode={'random'} >请先确认自己的身份</Texty>
                 <Button onClick={this.chooseRadm} ghost type="primary" shape="round"  size='large'>
                     开始随机
                 </Button>
-                <QueueAnim component ='div' delay={300} type={['right', 'left']} leaveReverse>
+                <QueueAnim component ='div' delay={300} type={['right']} leaveReverse>
                     {
-                        this.state.roleImge.map((item)=>{
+                        this.state.roleInfo.map((item)=>{
                             return(
-                                item
+                                <div  style={{width: 225,float: 'left', margin: '0px 10px 18px 0px'}} key={item.id}>
+                                        <Image key={item.id}
+                                               width={200}
+                                               src={item.roleImage}
+                                        />
+                                </div>
                             )
                         })
                     }
                 </QueueAnim>
+
             </div>
 
         )

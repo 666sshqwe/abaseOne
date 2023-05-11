@@ -20,7 +20,8 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "history": "^5.1.0",
-    "react-router": "latest"
+    "react-router": "latest",
+    "node": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

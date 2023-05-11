@@ -26,3 +26,8 @@ code {
   background: #000;
   border: 1px solid #303030;
 }
+
+::selection {
+  color: #1890ff ;
+  background: #40a9ff00;
+}

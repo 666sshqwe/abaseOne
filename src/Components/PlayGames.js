@@ -14,8 +14,29 @@ export default class PlayGames extends Component {
             visible:false,
             isSelect:false,
             role:"",
-            roleID:[]
+            roleID:[],
+            pageParam:""
         }
+    }
+
+
+    componentDidMount(){
+        // //通用写法
+        // axios.get("/store/roleInfo",{
+        //     params:{
+        //         roleID:"1102"
+        //     }
+        // })
+        //     .then(res =>res.data)
+        //     .then(data=>{
+        //         console.log("接受到的消息是："+data);
+        //     })
+
+        var param  = window.location.href.split("?")[1].split("=")[1];
+        this.setState({
+            pageParam:param
+        });
+
     }
 
     content = (
@@ -47,8 +68,9 @@ export default class PlayGames extends Component {
 
     render(){
         return(
-          <div>
+          <div style={{overflow :"auto"}}>
               <StepsUtil/>
+              {/**右下角身份牌**/}
               <Popover className = "Idcard" placement="leftTop" content={this.content} >
                <IdcardOutlined  style={{ fontSize: '751%'}} onClick={this.showDrawerP}/>
               </Popover>

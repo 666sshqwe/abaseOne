@@ -1,7 +1,8 @@
 import axios from "axios";
 
 axios.defaults.timeout = 10000;
-axios.defaults.baseURL = "http://172.22.159.164:8015/stores";
+axios.defaults.baseURL = "http://172.20.10.6:8015/stores";
+
 
 
 /**
@@ -109,7 +110,7 @@ export function put(url,data={}) {
  * 统一的接口处理，对外暴露
  *
  * */
-export default function (fecth,url,param) {
+export default function (fecth,url,param,headsValue) {
     let _data = "";
     return new Promise((resolve,reject)=>{
         switch (fecth) {

@@ -4,8 +4,6 @@ import 'antd/dist/antd.min.css';
 import imgCDC from "../../resources/images/硬核/已知死亡/陈大川/陈大川_1.jpg";
 import imgPathBG from "../../resources/images/硬核/已知死亡/故事背景.jpg";
 import Cards from "../Utils/Cards";
-import Drawers from "../Utils/Drawers"
-import {Drawer} from "antd";
 import imgQZRW from "../../resources/images/硬核/漆昼之翁/故事简介.jpg";
 import imgFS from "../../resources/images/硬核/漆昼之翁/冯时/冯时 (1).jpg";
 import imgLL from "../../resources/images/硬核/漆昼之翁/刘恋/刘恋 (1).jpg";

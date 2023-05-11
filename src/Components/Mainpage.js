@@ -2,22 +2,23 @@
 import './../CssUtils/Mainpage.css';
 import React,{Component} from "react";
 import Request from '../service/request';
-import {Button, Checkbox, Form, message, Tabs} from 'antd';
+import {Radio,Button, Checkbox, Form, message, Tabs,Input} from 'antd';
 import {LockOutlined,MobileOutlined,UserOutlined} from '@ant-design/icons';
 import {ProFormText} from '@ant-design/pro-components';
-import History from "./History"
-import {Link, useNavigate} from "react-router-dom";
-
+import History from "./History";
+import {initHeader} from "../service/request";
+import axios from "axios";
+import App from './../App';
 
 const { TabPane } = Tabs;
 
 
 
 export default class Mainpage extends Component{
-
     constructor(props){
         super(props);
         this.state = {
+            status:"",
             loginType:"account",
             loginStatus:"ok",
             tabType:"account"
@@ -27,25 +28,52 @@ export default class Mainpage extends Component{
 
     login = async (data) => {
         var msg = "";
-        await Request("post", "/login/Authentica", data).then(
+        await Request("post", "/user/login", data).then(
             (res) => {
-                console.log("登录成功，返回值：" + res);
                 msg = res;
             });
-        if (msg === "success") {
-            History.push({pathname:'/HardCcore?id=10235'});
+
+        this.setState({
+            status:msg.status
+        });
+
+        if (msg.status === "success") {
+            History.push({pathname:'/Supernatural?id='+msg.userInfo.cid});
+            History.go(0);
+        }
+
+        return msg;
+    };
+
+    logon = async (data) => {
+        var msg = "";
+        await Request("post", "/user/logon", data).then(
+            (res) => {
+                msg = res;
+            });
+        if (msg.status === "success") {
+            History.push({pathname:'/Mainpage'});
             History.go(0);
         }
         return msg;
     };
 
-
     onFinish=(value)=>{
-        let data = {
-            userName: value.username,
-            userPassword: value.password
-        };
-       this.login(data);
+        if(this.state.tabType === 'account'){
+            let data = {
+                userName: value.username,
+                userPassword: value.password,
+            };
+            this.login(data);
+        }else{
+            let data = {
+                userName: value.invName,
+                userPassword: value.invPassword,
+                userPhone:value.invPhone,
+                userSex:value.invSex
+            };
+            this.logon(data);
+        }
     };
 
     onChange = (key) => {
@@ -54,6 +82,9 @@ export default class Mainpage extends Component{
         })
     };
 
+    RadioOn = (e) => {
+        // console.log(e.target.value);
+    };
 
     render() {
         return (
@@ -67,11 +98,11 @@ export default class Mainpage extends Component{
                     >
                         <Tabs activeKey={this.state.tabType} onChange={this.onChange}>
                             <TabPane key="account" tab="账号密码登录"/>
-                            <TabPane key="special" tab="特殊认证"/>
+                            <TabPane key="special" tab="注册"/>
                         </Tabs>
 
                         {this.state.status === 'error' && this.state.loginType === 'account' && (
-                            message.error('账户或密码错误(admin/ant.design)')
+                            message.error('账户或密码错误')
                         )}
                         {this.state.tabType === 'account' && (
                             <>
@@ -81,19 +112,8 @@ export default class Mainpage extends Component{
                                         size: 'large',
                                         prefix: <UserOutlined className="prefixIcon" />,
                                     }}
-                                    placeholder='用户名: admin or user'
-
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: (
-                                                <div
-                                                    id="pages.login.username.required"
-                                                    defaultMessage="请输入用户名!"
-                                                />
-                                            ),
-                                        },
-                                    ]}
+                                    placeholder='用户名'
+                                    rules={[{ required: true, message: '请输入用户名' }]}
                                 />
                                 <ProFormText.Password
                                     name="password"
@@ -101,31 +121,24 @@ export default class Mainpage extends Component{
                                         size: 'large',
                                         prefix: <LockOutlined className="prefixIcon}"/>,
                                     }}
-                                    placeholder='密码: ant.design'
-
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: (
-                                                "请输入密码！"
-                                            ),
-                                        },
-                                    ]}
+                                    placeholder='密码'
+                                    rules={[{ required: true, message: '请输入密码' }]}
                                 />
                             </>
                         )}
 
-                        {this.state.status === 'error' && this.state.loginType === 'mobile' &&
-                        <div content="验证码错误" />}
+                        {this.state.status === 'error' && this.state.loginType === 'special' &&
+                        <div content="未知错误" />}
                         {this.state.tabType === 'special' && (
                             <>
                                 <ProFormText
                                     fieldProps={{
                                         size: 'large',
-                                        prefix: <MobileOutlined className="prefixIcon" />,
+                                        prefix: <UserOutlined className="prefixIcon" />,
                                     }}
-                                    name="InvName"
-                                    placeholder="特殊账号"
+                                    name="invName"
+                                    placeholder="账号"
+                                    rules={[{ required: true, message: '请输入用户名' }]}
                                 />
                                 <ProFormText.Password
                                     fieldProps={{
@@ -135,34 +148,55 @@ export default class Mainpage extends Component{
                                     captchaProps={{
                                         size: 'large',
                                     }}
-                                    placeholder='邀请码'
-                                    name="InvCode"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: (
-                                                "请输入邀请码！"
-                                            ),
-                                        },
-                                    ]}
+                                    placeholder='密码'
+                                    name="invPassword"
+                                    rules={[{ required: true, message: '请输入密码' }]}
                                 />
+                                <ProFormText
+                                    maxLength={11}
+                                             fieldProps={{
+                                                 size: 'large',
+                                                 prefix: <MobileOutlined className="prefixIcon" />,
+                                             }}
+                                    name="invPhone"
+                                    placeholder="手机号"
+                                    size="large"
+                                />
+                            <Form.Item label="性别" name="invSex" rules={[
+                                {
+                                    required: true,
+                                    message: '请选择性别',
+                                },
+                            ]}>
+                                <Radio.Group name="invSex" onChange={this.RadioOn} >
+                                    <Radio value="男">男</Radio>
+                                    <Radio value="女">女</Radio>
+                                </Radio.Group>
+                            </Form.Item>
                             </>
                         )}
                         <Form.Item>
-                            <Form.Item name="remember" valuePropName="checked" noStyle>
-                                <Checkbox>Remember me</Checkbox>
-                            </Form.Item>
 
-                            <a className="login-form-forgot" href="">
-                                忘记密码
-                            </a>
+                                <Form.Item name="remember" valuePropName="checked" noStyle>
+                                    <Checkbox>Remember me</Checkbox>
+                                </Form.Item>
+                                <a className="login-form-forgot" href="">
+                                    忘记密码
+                                </a>
+
                         </Form.Item>
 
                         <Form.Item>
+                            {this.state.tabType === 'account' &&(
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 登录
-                            </Button>
-                            Or <a href="">注册!</a>
+                            </Button>)}
+
+                            {this.state.tabType === 'special' &&(
+                                <Button type="primary" htmlType="submit" className="login-form-button">
+                                    注册
+                                </Button>)}
+
                         </Form.Item>
                     </Form>
                 </div>
